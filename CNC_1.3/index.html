@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle CNC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/Controle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <button id="toggle-menu" class="toggle-button" aria-label="Toggle menu">
+        <div>☰</div>
+    </button>
+    
+    <div class="sidebar" id="sidebar">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="index.html"><i class="fa-solid fa-gamepad"></i> Controle</a></li>
+            <li><a href="http://192.168.43.108:1880/ui"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="Contatos.html"><i class="fas fa-user"></i> Contatos</a></li>
+        </ul>
+    </div>
+    
+    <div class="container">
+        <div class="control-panel">
+            <h1>Controle CNC</h1>
+            <div class="d-pad">
+                <button id="move-up" class="control-btn up">↑</button>
+                <div class="horizontal">
+                    <button id="move-left" class="control-btn left">←</button>
+                    <button id="move-down" class="control-btn down">↓</button>
+                    <button id="move-right" class="control-btn right">→</button>
+                </div>
+            </div>
+            <div class="vertical-move">
+                <button id="up" class="control-btn z-up">Z↑</button>
+                <button id="down" class="control-btn z-down">Z↓</button>
+            </div>
+        </div>
+        <div class="status-display">
+            <h2>Status da Máquina</h2>
+            <p id="machine-status">Parado</p>
+        </div>
+    </div>
+    
+    <script src="js/Controle.js"></script>
+</body>
+</html>

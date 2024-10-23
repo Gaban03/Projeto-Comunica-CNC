@@ -1,0 +1,454 @@
+[
+    {
+        "id": "f852895be5228e76",
+        "type": "ui_gauge",
+        "z": "41b12f3c89078cce",
+        "name": "Posição Z",
+        "group": "99901daa79e5044d",
+        "order": 4,
+        "width": 6,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Posição Z",
+        "label": "Unidade",
+        "format": "{{msg.payload.z}}",
+        "min": "-100",
+        "max": 100,
+        "colors": [
+            "#4b0082",
+            "#ff00ff",
+            "#ffb6c1"
+        ],
+        "seg1": "-50",
+        "seg2": "50",
+        "diff": false,
+        "className": "",
+        "x": 700,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "0d2c4ee5fff7be67",
+        "type": "function",
+        "z": "41b12f3c89078cce",
+        "name": "Prepara Dados para Serial",
+        "func": "var direction = msg.payload.movement;\n\n// Verifica se a direção recebida é válida\nif ([\"1\", \"2\", \"3\", \"4\", \"5\", \"6\"].indexOf(direction) !== -1) {\n    // Envia somente os valores válidos\n    msg.payload = direction;\n    return msg;\n} else if (direction === \"0\") {\n    // Quando direção for 0, envia comando de parada\n    msg.payload = \"0\";\n    return msg;\n} else if (direction === \".\") {\n    // Comando para manter a comunicação ativa, sem movimento\n    msg.payload = \".\"; // Opcionalmente, você pode fazer outro tratamento\n    return msg;\n} else {\n    return null;  // Ignora se o comando for inválido\n}\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 180,
+        "wires": [
+            [
+                "bd40e60d6b349fe4",
+                "653abb63b9220983",
+                "73e0808297f29bc2"
+            ]
+        ]
+    },
+    {
+        "id": "90959f55bf5c6ff2",
+        "type": "http in",
+        "z": "41b12f3c89078cce",
+        "name": "Recebe Dados do Front-end",
+        "url": "/mensagem",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "0d2c4ee5fff7be67",
+                "93e9ee3827cd5663"
+            ]
+        ]
+    },
+    {
+        "id": "653abb63b9220983",
+        "type": "http response",
+        "z": "41b12f3c89078cce",
+        "name": "Resposta HTTP",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "bd40e60d6b349fe4",
+        "type": "serial out",
+        "z": "41b12f3c89078cce",
+        "name": "Enviar Dados para COM10",
+        "serial": "0565c1c9b6f6c186",
+        "x": 790,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "73e0808297f29bc2",
+        "type": "debug",
+        "z": "41b12f3c89078cce",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "93e9ee3827cd5663",
+        "type": "debug",
+        "z": "41b12f3c89078cce",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "35f718bd23647110",
+        "type": "inject",
+        "z": "41b12f3c89078cce",
+        "name": "variaveisGlobais",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "topic": "",
+        "x": 180,
+        "y": 400,
+        "wires": [
+            [
+                "b7cca0855e961871"
+            ]
+        ]
+    },
+    {
+        "id": "b7cca0855e961871",
+        "type": "change",
+        "z": "41b12f3c89078cce",
+        "name": "set flow.dadosGlobais",
+        "rules": [
+            {
+                "t": "set",
+                "p": "dadosGlobais",
+                "pt": "flow",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e15d991544f33dab",
+        "type": "inject",
+        "z": "41b12f3c89078cce",
+        "name": "",
+        "props": [],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 150,
+        "y": 480,
+        "wires": [
+            [
+                "03383d1a574d6b04"
+            ]
+        ]
+    },
+    {
+        "id": "03383d1a574d6b04",
+        "type": "function",
+        "z": "41b12f3c89078cce",
+        "name": "function 3",
+        "func": "let dados = flow.get(\"dadosGlobais\");\n\n let datahora = new Date();\n    let h = new Date().getHours();\n    let min = new Date().getMinutes();\n    let s = new Date().getSeconds();\n\n    h = (h < 10) ? '0' + h : h\n    min = (min < 10) ? '0' + min : min\n    s = (s < 10) ? '0' + s : s\n\n\n    let horaformatada = h + ':' + min + ':' + s;\n\n        // Obter o elemento e atualizar o conteúdo\n        \n\n    // horas.innerHTML = h\n    // minutos.innerHTML = m\n    // segundos.innerHTML = s\n\n\n\n\n\n\n\n\n    let data = new Date();\n    let d = data.getDate();\n    let m = data.getMonth()+1;\n    let a = data.getFullYear();\n\n    d = (d < 10) ? '0' + d : d\n    m = (m < 10) ? '0' + m : m\n\n\n    let dataformatada = d + '-' + m + '-' + a;\n\n   \n\n\n\n\nlet feed = dados.feedRate;\nlet spindle = dados.spindle;\nlet status = dados.status;\nlet x = dados.x;\nlet y = dados.y;\nlet z = dados.z;\nlet dataF = dataformatada;\nlet horaF = horaformatada;\n\n\n\nmsg.topic = `INSERT INTO dados_mq(status_mq, posicao_x, posicao_y, posicao_z, taxa_avanco, RPM, data, hora) VALUES('${status}', '${x}', '${y}', '${z}', '${feed}', '${spindle}', '${dataF}', '${horaF}')`;\n        \nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 480,
+        "wires": [
+            [
+                "df1a58003577176e"
+            ]
+        ]
+    },
+    {
+        "id": "df1a58003577176e",
+        "type": "mysql",
+        "z": "41b12f3c89078cce",
+        "mydb": "7bc3020667e785b9",
+        "name": "BANCO",
+        "x": 490,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3b8dd77ea6f9adf2",
+        "type": "inject",
+        "z": "41b12f3c89078cce",
+        "name": "",
+        "props": [],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 150,
+        "y": 560,
+        "wires": [
+            [
+                "ad37809d52bd773d"
+            ]
+        ]
+    },
+    {
+        "id": "ad37809d52bd773d",
+        "type": "function",
+        "z": "41b12f3c89078cce",
+        "name": "apiDadosCNC",
+        "func": "msg.payload = flow.get(\"dadosGlobais\");\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "02811722026611d8",
+        "type": "serial in",
+        "z": "41b12f3c89078cce",
+        "name": "CNC",
+        "serial": "f85f8403d06665db",
+        "x": 100,
+        "y": 680,
+        "wires": [
+            [
+                "1132392f089f0253"
+            ]
+        ]
+    },
+    {
+        "id": "1132392f089f0253",
+        "type": "function",
+        "z": "41b12f3c89078cce",
+        "name": "TrataDados",
+        "func": "// Função para tratar dados recebidos via serial\ntry {\n    let dados = msg.payload.split(\"|\");\n    let status = dados[0].substring(1);\n    let dadosPos = dados[1].split(\":\")[1].split(\",\");\n    let x = parseFloat(dadosPos[0]);\n    let y = parseFloat(dadosPos[1]);\n    let z = parseFloat(dadosPos[2]);\n    let dadosJSON = {\"status\": status, \"x\": x, \"y\": y, \"z\": z};\n    msg.payload = dadosJSON;\n    return msg;\n} catch (err) {\n    return null;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 680,
+        "wires": [
+            [
+                "4c13e8ae10490e3e",
+                "9a9d9cc23debf3e9",
+                "a90f12b8764317be",
+                "f852895be5228e76",
+                "5a792106ecc1a3e7"
+            ]
+        ]
+    },
+    {
+        "id": "4c13e8ae10490e3e",
+        "type": "function",
+        "z": "41b12f3c89078cce",
+        "name": "AtualizaDados",
+        "func": "flow.set(\"dadosGlobais\", msg.payload);\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9a9d9cc23debf3e9",
+        "type": "ui_gauge",
+        "z": "41b12f3c89078cce",
+        "name": "Posição X",
+        "group": "99901daa79e5044d",
+        "order": 2,
+        "width": 6,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Posição X",
+        "label": "Unidade",
+        "format": "{{msg.payload.x}}",
+        "min": "-100",
+        "max": 100,
+        "colors": [
+            "#0048ba",
+            "#00ff7f",
+            "#228b22"
+        ],
+        "seg1": "-50",
+        "seg2": "50",
+        "diff": false,
+        "className": "",
+        "x": 710,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "a90f12b8764317be",
+        "type": "ui_gauge",
+        "z": "41b12f3c89078cce",
+        "name": "Posição Y",
+        "group": "99901daa79e5044d",
+        "order": 3,
+        "width": 6,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Posição Y",
+        "label": "Unidade",
+        "format": "{{msg.payload.y}}",
+        "min": "-100",
+        "max": 100,
+        "colors": [
+            "#8b0000",
+            "#ffa500",
+            "#ffff38"
+        ],
+        "seg1": "-50",
+        "seg2": "50",
+        "diff": false,
+        "className": "",
+        "x": 700,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "5a792106ecc1a3e7",
+        "type": "ui_text",
+        "z": "41b12f3c89078cce",
+        "group": "99901daa79e5044d",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "Status Máquina",
+        "label": "Status",
+        "format": "{{msg.payload.status}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": true,
+        "font": "",
+        "fontSize": "24",
+        "color": "#00fbff",
+        "x": 690,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "99901daa79e5044d",
+        "type": "ui_group",
+        "name": "Cnc_Dash",
+        "tab": "fd266f42211ffda9",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "0565c1c9b6f6c186",
+        "type": "serial-port",
+        "name": "",
+        "serialport": "COM14",
+        "serialbaud": "57600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "time",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "7bc3020667e785b9",
+        "type": "MySQLdatabase",
+        "name": "Projeto",
+        "host": "localhost",
+        "port": "3306",
+        "db": "dados_mecanica",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "f85f8403d06665db",
+        "type": "serial-port",
+        "name": "RS232",
+        "serialport": "COM10",
+        "serialbaud": "115200",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "fd266f42211ffda9",
+        "type": "ui_tab",
+        "name": "CNC",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

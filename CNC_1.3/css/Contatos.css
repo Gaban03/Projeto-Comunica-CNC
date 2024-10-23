@@ -1,0 +1,334 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #2b2b2b;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+h1 {
+    color: #00d4ff;
+    text-shadow: 0 2px 8px rgba(0, 212, 255, 0.8);
+    margin: 20px;
+    font-size: 26px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.team-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+}
+
+.card1 {
+    background-color: #1e1e1e;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), -8px -8px 15px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card2 {
+    background-color: #1e1e1e;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), -8px -8px 15px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card3 {
+    background-color: #1e1e1e;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), -8px -8px 15px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card4 {
+    background-color: #1e1e1e;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), -8px -8px 15px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card5 {
+    background-color: #1e1e1e;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), -8px -8px 15px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card1:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px #00d4ff, -8px -8px 25px rgba(255, 255, 255, 0.2);
+}
+
+.card2:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px #15ff00, -8px -8px 25px rgba(255, 255, 255, 0.2);
+}
+
+.card3:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px #ff0000, -8px -8px 25px rgba(255, 255, 255, 0.2);
+}
+
+.card4:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px #ff00ea, -8px -8px 25px rgba(255, 255, 255, 0.2);
+}
+
+.card5:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px #e5ff00, -8px -8px 25px rgba(255, 255, 255, 0.2);
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 10px #00ff85;
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+h3 {
+    font-size: 22px;
+    margin: 10px 0;
+}
+
+p {
+    font-size: 16px;
+}
+
+.description {
+    font-size: 14px;
+    color: #cccccc;
+    margin-bottom: 15px;
+}
+
+.social-icons1 {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icons2 {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icons3 {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icons4 {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icons5 {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icons1 a {
+    color: white;
+    font-size: 24px;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.social-icons2 a {
+    color: white;
+    font-size: 24px;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.social-icons3 a {
+    color: white;
+    font-size: 24px;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.social-icons4 a {
+    color: white;
+    font-size: 24px;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.social-icons5 a {
+    color: white;
+    font-size: 24px;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.social-icons1 a:hover {
+    color: #00d4ff;
+    text-shadow: 0 0 10px #00d4ff, 0 0 20px rgba(0, 255, 133, 0.8);
+}
+
+.social-icons2 a:hover {
+    color: #15ff00;
+    text-shadow: 0 0 10px #15ff00, 0 0 20px rgba(0, 255, 133, 0.8);
+}
+
+.social-icons3 a:hover {
+    color: #ff0000;
+    text-shadow: 0 0 10px #ff0000, 0 0 20px rgba(0, 255, 133, 0.8);
+}
+
+.social-icons4 a:hover {
+    color: #ff00ea;
+    text-shadow: 0 0 10px #ff00ea, 0 0 20px rgba(0, 255, 133, 0.8);
+}
+
+.social-icons5 a:hover {
+    color: #e5ff00;
+    text-shadow: 0 0 10px #e5ff00, 0 0 20px rgba(0, 255, 133, 0.8);
+}
+
+.toggle-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: transparent; 
+    border: none;
+    cursor: pointer;
+    z-index: 1000; 
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+
+.toggle-button:before,
+.toggle-button:after,
+.toggle-button div {
+    content: "";
+    display: block;
+    width: 30px; 
+    height: 4px; 
+    background-color: white; 
+    margin: 2px 0; 
+    transition: all 0.3s ease; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.toggle-button:hover:before,
+.toggle-button:hover:after,
+.toggle-button:hover div {
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
+}
+
+.toggle-button:active:before,
+.toggle-button:active:after,
+.toggle-button:active div {
+    transform: translateY(1px); 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); 
+}
+
+.sidebar {
+    background-color: #1e1e1e; 
+    width: 20%; 
+    height: 100vh; 
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    position: absolute; 
+    left: -100%; 
+    transition: left 0.3s ease; 
+    z-index: 500; 
+}
+
+.sidebar.visible {
+    left: 0; 
+}
+
+.sidebar h2 {
+    font-size: 22px;
+    color: #00d4ff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center; 
+    transition: color 0.2s;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px; 
+}
+
+.sidebar ul li a:hover {
+    color: #00d4ff; 
+}
+
+@media (max-width: 768px) {
+    .team-cards {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    .profile-pic {
+        width: 80px;
+        height: 80px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .sidebar {
+        width: 80%;
+    }
+}
