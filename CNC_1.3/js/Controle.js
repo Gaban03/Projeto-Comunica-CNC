@@ -76,7 +76,9 @@ function updateStatus(message) {
 function sendMovementData(direction) {
     const data = { movement: direction };
 
-    fetch('http://192.168.43.108:1880/mensagem', {
+    var link = '';
+
+    fetch(link + ':1880/mensagem', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
