@@ -56,6 +56,7 @@ public class Screen extends JFrame {
 	private static JLabel lblZ = new JLabel("0.000");
 	private boolean escrita = true;
 	private boolean movMobileOn = false; 
+	private Console console = new Console();
 
 	// flag para sinalizar status da porta
 	boolean conectado = false;
@@ -151,6 +152,7 @@ public class Screen extends JFrame {
 		btnApaga.setBounds(714, 452, 89, 23);
 		contentPane.add(btnApaga);
 		JTextArea textComandList = new JTextArea();
+		textComandList.setEnabled(false);
 		JScrollPane textComandListS = new JScrollPane(textComandList);
 		contentPane.add(textComandListS);
 		textComandListS.setBounds(247, 121, 564, 329);
@@ -526,6 +528,11 @@ public class Screen extends JFrame {
 		btnNewButton.setBounds(30, 295, 172, 54);
 		pnlButtons.add(btnNewButton);
 		btnNewButton.setEnabled(false);
+		
+		JButton btnConsole = new JButton("Console");
+		
+		btnConsole.setBounds(609, 452, 89, 23);
+		contentPane.add(btnConsole);
 
 		btnHomePosition.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -590,6 +597,14 @@ public class Screen extends JFrame {
 				btnDesconectar2.setEnabled(false);
 			}
 		});
+		
+		
+		btnConsole.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				console.setVisible(rootPaneCheckingEnabled);
+				
+			}
+		});
 
 		// Cria um servi�o agendado com tres Thread
 		ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(3);
@@ -607,7 +622,7 @@ public class Screen extends JFrame {
 				if (conectado2) {
 					
 					String verificaSinal = com2.leDados();
-					textComandList.append(verificaSinal);
+					console.addConsole(verificaSinal);
 					if (verMov(verificaSinal)) {
 						int opcao = Integer.parseInt(verificaSinal);
 						textComandList.append(verificaSinal+" \r\n");
