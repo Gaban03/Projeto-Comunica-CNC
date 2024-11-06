@@ -625,7 +625,7 @@ public class Screen extends JFrame {
 					console.addConsole(verificaSinal);
 					if (verMov(verificaSinal)) {
 						int opcao = Integer.parseInt(verificaSinal);
-						textComandList.append(verificaSinal+" \r\n");
+						//textComandList.append(verificaSinal+" \r\n");
 						moveMobile(opcao);
 					}
 					else if(movMobileOn && verificaSinal.equals(".")) {
